@@ -103,13 +103,17 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Chip.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Chip.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>

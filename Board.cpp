@@ -22,6 +22,7 @@ Board::Board(int player_one_color, int player_two_color)
 	m_previous_move_row = 0;
 	m_previous_move_col = 0;
 	m_undid_once_already = false;
+	playerTurn = P1;
 }
 
 void Board::replay()
@@ -33,22 +34,29 @@ void Board::replay()
 			m_grid[i][j] = NULL;
 		}
 	}
+	playerTurn = P1;
 }
-void Board::turn(int col, int player)
+void Board::turn(int col)
 {
 	for (int r = MAXROWS - 1; r >= 0; r--)
 	{
 		if (m_grid[r][col-1] == NULL)
 		{
-			m_grid[r][col-1] = &m_players[player-1];
+			m_grid[r][col-1] = &m_players[playerTurn-1];
 			m_previous_move_row = r+1;
 			m_previous_move_col = col; 
 			m_undid_once_already = false;
+			switchTurns();
 			break;
 		}	
 	}
 }
-
+void Board::switchTurns()
+{
+	if (playerTurn == P1)
+		playerTurn = P2;
+	else playerTurn = P1;
+}
 bool Board::validMove(int col)
 {
 	if (m_grid[0][col-1] == NULL)
@@ -63,6 +71,7 @@ void Board::redoPreviousMove()
 	{
 		m_grid[m_previous_move_row - 1][m_previous_move_col - 1] = NULL;
 		m_undid_once_already = true;
+		switchTurns();
 	}
 }
 bool Board::winner(int player)

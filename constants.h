@@ -4,6 +4,13 @@
 //4) Audio
 
 
+enum GameStates
+{
+	STATE_NULL,
+	STATE_TITLE,
+	STATE_GAME,
+	STATE_EXIT,
+};
 
 const int BUTTON_SPRITE_MOUSE_OVER_MOTION = 0;
 const int BUTTON_SPRITE_MOUSE_DOWN = 1;
@@ -11,6 +18,8 @@ const int PLAYBUTTON_X = 90;
 const int PLAYBUTTON_Y = 480;
 const int PLAYBUTTON_WIDTH = 640;
 const int PLAYBUTTON_HEIGHT = 120;
+const int TITLE_IMAGE_X = 90;
+const int TITLE_IMAGE_Y = 70;
 
 const int SCREEN_WIDTH = 820; //640+180
 const int SCREEN_HEIGHT = 660; //480+180
