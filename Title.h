@@ -6,7 +6,7 @@ class Title : public GameState
 {
 public:
 	Title();
-	~Title();
+	virtual ~Title();
 
 	void handle_events();
 	void logic();

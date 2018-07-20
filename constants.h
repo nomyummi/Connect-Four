@@ -9,6 +9,7 @@ enum GameStates
 	STATE_NULL,
 	STATE_TITLE,
 	STATE_GAME,
+	STATE_ONE_PLAYER_MODE,
 	STATE_EXIT,
 };
 
@@ -39,9 +40,10 @@ const int MAXCOLS = 7;
 const int NUMPLAYERS = 2;
 const int P1 = 1;
 const int P2 = 2;
+const int MAXDEPTH = 2; //Set larger heap size for MAXDEPTH > 3 
 
 const int CHIP_DIAMETER = 72;
-const int GRIDSPACE_WIDTH = 90; 
+const int GRIDSPACE_WIDTH = 90;
 const int GRIDSPACE_HEIGHT = 80;
 ////spriteSheet.render(renderer, 14, 5, 72, CHIP_DIAMETER, &spriteChips[BLUECHIP]); top left corner
 

@@ -1,13 +1,13 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef ONE_PLAYER_MODE_H
+#define ONE_PLAYER_MODE_H
 
 #include "GameState.h"
 #include "Board.h"
-class Game : public GameState
+class OnePlayerMode : public GameState
 {
 public:
-	Game();
-	virtual ~Game();
+	OnePlayerMode();
+	virtual ~OnePlayerMode();
 
 	bool load_images();
 	void handle_events();
@@ -15,7 +15,7 @@ public:
 	void render();
 	void keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, Uint8* red, Uint8* blue, Uint8* green);
 private:
-	Board board = Board(REDCHIP, BLUECHIP);
+	Board board = Board(REDCHIP, GREENCHIP);
 	Texture* currentGrid;
 	Texture grids[NUM_COLORS_GRID];
 	bool gridWhite;
@@ -30,5 +30,6 @@ private:
 	SDL_Rect chipQuadrants[4];
 	int playerWon;
 	bool gameOver;
+	int startTimer = 0; //To delay the AI's move so the move taken isn't instantaneous
 };
 #endif
