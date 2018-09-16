@@ -10,57 +10,57 @@
 bool OnePlayerMode::load_images()
 {
 	bool success = true;
-	if (!grids[BLUE].loadFile(renderer, "Connect4Board.png"))
+	if (!grids[BLUE].loadFile(renderer, "images/Connect4Board.png"))
 	{
 		printf("Failed to load blue board texture image!\n");
 		success = false;
 	}
-	if (!grids[WHITE].loadFile(renderer, "Connect4Board_White.png"))
+	if (!grids[WHITE].loadFile(renderer, "images/Connect4Board_White.png"))
 	{
 		printf("Failed to load white board texture image!\n");
 		success = false;
 	}
-	if (!grids[BLACK].loadFile(renderer, "Connect4Board_Black.png"))
+	if (!grids[BLACK].loadFile(renderer, "images/Connect4Board_Black.png"))
 	{
 		printf("Failed to load black board texture image!\n");
 		success = false;
 	}
-	if (!spriteSheet.loadFile(renderer, "Connect4Pieces.png"))
+	if (!spriteSheet.loadFile(renderer, "images/Connect4Pieces.png"))
 	{
 		printf("Failed to load piece texture image!\n");
 		success = false;
 	}
-	if (!tRows.loadFile(renderer, "Rows.png"))
+	if (!tRows.loadFile(renderer, "images/Rows.png"))
 	{
 		printf("Failed to load row numbers texture image!\n");
 		success = false;
 	}
-	if (!tControls.loadFile(renderer, "Controls.png"))
+	if (!tControls.loadFile(renderer, "images/Controls.png"))
 	{
 		printf("Failed to load controls texture image!\n");
 		success = false;
 	}
-	if (!gameWinner[0].loadFile(renderer, "Tie.png"))
+	if (!gameWinner[0].loadFile(renderer, "images/Tie.png"))
 	{
 		printf("Failed to load tie texture image!\n");
 		success = false;
 	}
-	if (!gameWinner[P1].loadFile(renderer, "Player1Wins.png"))
+	if (!gameWinner[P1].loadFile(renderer, "images/Player1Wins.png"))
 	{
 		printf("Failed to load P1 winner texture image!\n");
 		success = false;
 	}
-	if (!gameWinner[P2].loadFile(renderer, "Player2Wins.png"))
+	if (!gameWinner[P2].loadFile(renderer, "images/Player2Wins.png"))
 	{
 		printf("Failed to load P2 winner texture image!\n");
 		success = false;
 	}
-	if (!tPlayerTurn[P1 - 1].loadFile(renderer, "Player1Turn.png"))
+	if (!tPlayerTurn[P1 - 1].loadFile(renderer, "images/Player1Turn.png"))
 	{
 		printf("Failed to load P1s turn texture image!\n");
 		success = false;
 	}
-	if (!tPlayerTurn[P2 - 1].loadFile(renderer, "Player2Turn.png"))
+	if (!tPlayerTurn[P2 - 1].loadFile(renderer, "images/Player2Turn.png"))
 	{
 		printf("Failed to load AIs turn texture image!\n");
 		success = false;

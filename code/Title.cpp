@@ -8,15 +8,15 @@
 
 Title::Title()
 {
-	if (!tPlayButton[BUTTON_SPRITE_MOUSE_OVER_MOTION].loadFile(renderer, "PlayGray.png"))
+	if (!tPlayButton[BUTTON_SPRITE_MOUSE_OVER_MOTION].loadFile(renderer, "images/PlayGray.png"))
 	{
 		printf("Failed to load controls texture image!\n");
 	}
-	if (!tPlayButton[BUTTON_SPRITE_MOUSE_DOWN].loadFile(renderer, "Play.png"))
+	if (!tPlayButton[BUTTON_SPRITE_MOUSE_DOWN].loadFile(renderer, "images/Play.png"))
 	{
 		printf("Failed to load controls texture image!\n");
 	}
-	if (!ConnectFourTitle.loadFile(renderer, "ConnectFourTitle.png"))
+	if (!ConnectFourTitle.loadFile(renderer, "images/ConnectFourTitle.png"))
 	{
 		printf("Failed to load controls texture image!\n");
 	}

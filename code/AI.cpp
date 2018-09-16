@@ -260,7 +260,7 @@ int AI::findBestMove()
 		columnToPick = rand() % 7;
 	}
 	root->value = bestValue;
-	std::cout << "\n P2 moved " << columnToPick << " " << bestValue << " \n";
+	//std::cout << "\n P2 moved " << columnToPick << " " << bestValue << " \n";
 	//TODO: fix redo button for AI, add in menu option for AI, add in cursor functionality, update instructions
 	return columnToPick + 1;
 }
