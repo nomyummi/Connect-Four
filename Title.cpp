@@ -90,10 +90,6 @@ void Title::handle_events()
 
 }
 
-void Title::logic()
-{
-}
-
 void Title::render()
 {
 	//Clear screen

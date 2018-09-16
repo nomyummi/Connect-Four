@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include "constants.h"
 #include "Texture.h"
-#include "Game.h"
+#include "OnePlayerMode.h"
 #include "globals.h"
 
 
-bool Game::load_images()
+bool OnePlayerMode::load_images()
 {
 	bool success = true;
 	if (!grids[BLUE].loadFile(renderer, "Connect4Board.png"))
@@ -62,7 +62,7 @@ bool Game::load_images()
 	}
 	if (!tPlayerTurn[P2 - 1].loadFile(renderer, "Player2Turn.png"))
 	{
-		printf("Failed to load P2s turn texture image!\n");
+		printf("Failed to load AIs turn texture image!\n");
 		success = false;
 	}
 
@@ -87,7 +87,7 @@ bool Game::load_images()
 	chipQuadrants[GREENCHIP].h = 150;
 	return success;
 }
-Game::Game()
+OnePlayerMode::OnePlayerMode()
 {
 	if (!load_images())
 		set_next_state(STATE_EXIT);
@@ -101,7 +101,7 @@ Game::Game()
 	gameOver = false;
 }
 
-Game::~Game()
+OnePlayerMode::~OnePlayerMode()
 {
 	grids[BLUE].free();
 	grids[WHITE].free();
@@ -115,24 +115,26 @@ Game::~Game()
 	tPlayerTurn[P1 - 1].free();
 	tPlayerTurn[P2 - 1].free();
 }
-void Game::handle_events()
+void OnePlayerMode::handle_events()
 {
-	//User requests quit
 	while (SDL_PollEvent(&e) != 0)
 	{
 		if (e.type == SDL_QUIT)
 		{
 			set_next_state(STATE_EXIT);
 		}
+		//Key pressed
 		else if (e.type == SDL_KEYDOWN)
 		{
 			if (!gameOver)
 			{
-				keyboardControls(e, &board, &gridWhite, &red, &blue, &green);
+				if (board.isTurn() == P1)
+				{
+					keyboardControls(e, &board, &gridWhite, &red, &blue, &green);
+				}
+				//"q" closes the application
 				if (e.key.keysym.sym == SDLK_q)
 					set_next_state(STATE_EXIT);
-				if (e.key.keysym.sym == SDLK_o)
-					set_next_state(STATE_ONE_PLAYER_MODE);
 			}
 			else if (gameOver)
 			{
@@ -146,10 +148,33 @@ void Game::handle_events()
 			}
 		}
 	}
-	
+	//Check if there's a winner
+	if (board.winner(P1))
+	{
+		gameOver = true;
+		playerWon = P1;
+	}
+	else if (board.winner(P2))
+	{
+		gameOver = true;
+		playerWon = P2;
+	}
+	else if (board.tie())
+	{
+		gameOver = true;
+		playerWon = 0;
+	}
+	if (!gameOver)
+	{
+		if (board.isTurn() == P2)
+		{
+			board.AImove();
+		}
+
+	}
 }
 
-void Game::keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, Uint8* red, Uint8* blue, Uint8* green) {
+void OnePlayerMode::keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, Uint8* red, Uint8* blue, Uint8* green) {
 	switch (event.key.keysym.sym)
 	{
 	case SDLK_8:
@@ -203,7 +228,7 @@ void Game::keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, 
 	}
 }
 
-void Game::render()
+void OnePlayerMode::render()
 {
 	//Clear screen
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -268,12 +293,12 @@ void Game::render()
 		if (!gameOver)
 			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[REDCHIP]);
 		else
-			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[BLUECHIP]);
+			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[GREENCHIP]);
 	}
 	if (board.isTurn() == P2)
 	{
 		if (!gameOver)
-			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[BLUECHIP]);
+			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[GREENCHIP]);
 		else
 			spriteSheet.render(renderer, 15, 15, 150, 150, &chipQuadrants[REDCHIP]);
 	}
@@ -308,22 +333,5 @@ void Game::render()
 
 	//Update screen
 	SDL_RenderPresent(renderer);
-
-	//Check if there's a winner
-	if (board.winner(P1))
-	{
-		gameOver = true;
-		playerWon = P1;
-	}
-	else if (board.winner(P2))
-	{
-		gameOver = true;
-		playerWon = P2;
-	}
-	else if (board.tie())
-	{
-		gameOver = true;
-		playerWon = 0;
-	}
 
 }

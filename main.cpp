@@ -9,6 +9,7 @@
 #include "Title.h"
 #include "Game.h"
 #include "GameState.h"
+#include "OnePlayerMode.h"
 #include <iostream>
 #include "globals.h"
 
@@ -42,14 +43,13 @@ int main(int argc, char* args[])
 
 	currentState = new Title();
 
+	//Finite state machine for better organization
+
 	//While the user hasn't quit
 	while (stateID != STATE_EXIT)
 	{
 		//Do state event handling
 		currentState->handle_events();
-
-		//Do state logic
-		currentState->logic();
 
 		//Change state if needed
 		change_state();
@@ -155,7 +155,9 @@ void change_state()
 		case STATE_GAME:
 			currentState = new Game();
 			break;
-
+		case STATE_ONE_PLAYER_MODE:
+			currentState = new OnePlayerMode();
+			break;
 		}
 
 		//Change the current state ID
