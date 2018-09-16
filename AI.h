@@ -24,15 +24,17 @@ public:
 	~AI();
 	int minimax(Node* node); //return col number
 	int findBestMove();
+	bool validMove(Node* node, int val);
 	int evaluationFunction(Node* node);
 	void updateBoardState(int playerTurn, int row, int col);
 	bool isWinner(int player, Node* node);
+	int countThrees(int player, Node* node);
 	void generateTree(); //Of MAXDEPTH
 	void addNodestoTree(Node* parent);
 	Node* newNode(Node* parent, int col);
 	void deleteNodes(Node* node);
 	void resetTree();
-	void printBoardState(); //for debugging
+	void printBoardState(Node* node); //for debugging
 	void printTree();
 	void printTreeHelper(Node* node); //for debugging
 private:

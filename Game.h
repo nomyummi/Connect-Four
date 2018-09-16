@@ -11,7 +11,6 @@ public:
 
 	bool load_images();
 	void handle_events();
-	void logic();
 	void render();
 	void keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, Uint8* red, Uint8* blue, Uint8* green);
 private:

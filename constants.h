@@ -40,7 +40,7 @@ const int MAXCOLS = 7;
 const int NUMPLAYERS = 2;
 const int P1 = 1;
 const int P2 = 2;
-const int MAXDEPTH = 2; //Set larger heap size for MAXDEPTH > 3 
+const int MAXDEPTH = 5;
 
 const int CHIP_DIAMETER = 72;
 const int GRIDSPACE_WIDTH = 90;

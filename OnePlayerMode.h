@@ -11,7 +11,6 @@ public:
 
 	bool load_images();
 	void handle_events();
-	void logic();
 	void render();
 	void keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, Uint8* red, Uint8* blue, Uint8* green);
 private:
@@ -30,6 +29,5 @@ private:
 	SDL_Rect chipQuadrants[4];
 	int playerWon;
 	bool gameOver;
-	int startTimer = 0; //To delay the AI's move so the move taken isn't instantaneous
 };
 #endif

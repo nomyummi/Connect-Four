@@ -12,8 +12,7 @@ public:
 	Board(int player_one_color, int player_two_color);
 	~Board();
 	void turn(int col);
-	void randomMove();
-	bool validMove(int col);
+	void AImove();
 	void redoPreviousMove();
 	bool winner(int player);
 	bool tie();

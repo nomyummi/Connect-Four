@@ -117,14 +117,13 @@ OnePlayerMode::~OnePlayerMode()
 }
 void OnePlayerMode::handle_events()
 {
-	//User requests quit
-
 	while (SDL_PollEvent(&e) != 0)
 	{
 		if (e.type == SDL_QUIT)
 		{
 			set_next_state(STATE_EXIT);
 		}
+		//Key pressed
 		else if (e.type == SDL_KEYDOWN)
 		{
 			if (!gameOver)
@@ -133,6 +132,7 @@ void OnePlayerMode::handle_events()
 				{
 					keyboardControls(e, &board, &gridWhite, &red, &blue, &green);
 				}
+				//"q" closes the application
 				if (e.key.keysym.sym == SDLK_q)
 					set_next_state(STATE_EXIT);
 			}
@@ -168,12 +168,7 @@ void OnePlayerMode::handle_events()
 	{
 		if (board.isTurn() == P2)
 		{
-		//	if (startTimer > 300) //Delay move by 200 frames
-			//{
-				board.randomMove();
-				//startTimer = 0;
-			//}
-	//		startTimer++;
+			board.AImove();
 		}
 
 	}
@@ -211,36 +206,26 @@ void OnePlayerMode::keyboardControls(SDL_Event event, Board* gameBoard, bool* gr
 		break;
 	case SDLK_1:
 		gameBoard->turn(1);
-		startTimer++;
 		break;
 	case SDLK_2:
 		gameBoard->turn(2);
-		startTimer++;
 		break;
 	case SDLK_3:
 		gameBoard->turn(3);
-		startTimer++;
 		break;
 	case SDLK_4:
 		gameBoard->turn(4);
-		startTimer++;
 		break;
 	case SDLK_5:
 		gameBoard->turn(5);
-		startTimer++;
 		break;
 	case SDLK_6:
 		gameBoard->turn(6);
-		startTimer++;
 		break;
 	case SDLK_7:
 		gameBoard->turn(7);
-		startTimer++;
 		break;
 	}
-}
-void OnePlayerMode::logic()
-{
 }
 
 void OnePlayerMode::render()
@@ -348,22 +333,5 @@ void OnePlayerMode::render()
 
 	//Update screen
 	SDL_RenderPresent(renderer);
-
-	////Check if there's a winner
-	//if (board.winner(P1))
-	//{
-	//	gameOver = true;
-	//	playerWon = P1;
-	//}
-	//else if (board.winner(P2))
-	//{
-	//	gameOver = true;
-	//	playerWon = P2;
-	//}
-	//else if (board.tie())
-	//{
-	//	gameOver = true;
-	//	playerWon = 0;
-	//}
 
 }

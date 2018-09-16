@@ -202,9 +202,6 @@ void Game::keyboardControls(SDL_Event event, Board* gameBoard, bool* gridWhite, 
 		break;
 	}
 }
-void Game::logic()
-{
-}
 
 void Game::render()
 {
