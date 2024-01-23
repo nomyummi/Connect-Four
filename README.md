@@ -3,7 +3,9 @@ A Connect 4 game with a one player and two player mode using the SDL library.
 
 There are two versions of the code. The Emscripten (WebAssembly) version uses Emscripten as the compiler. The other version was the original code that compiled through Visual Studio. The difference between the two versions is that the Emscripten version has certain modifications to get it to work such as using emscripten_set_main_loop and a make.sh file for making the compiled output.
 
-To play the game, download the `connect_four.data`, `connect_four.html`, `connect_four.js`, and `connect_four.wasm` files. Open `connect_four.html` in the browser.
+To play the game, go to https://victorxue.netlify.app/static/connect_four.html.
+
+To install, download the `connect_four.data`, `connect_four.html`, `connect_four.js`, and `connect_four.wasm` files. Open `connect_four.html` in the browser.
 
 > Note:
 > 
